@@ -87,7 +87,7 @@ mv basic/skill.json.tmp basic/skill.json
 echo "Enter first phrase: "
 read PHRASE_1
 echo -e "\n"
-sed -e "s/\${PHRASE_1}/Alexa ask ${APP_NAME}, ${PHRASE_1}/" basic/lambda/custom/index.ts  > basic/lambda/custom/index.ts.tmp
+sed -e "s/\${PHRASE_1}/${PHRASE_1}/" basic/lambda/custom/index.ts  > basic/lambda/custom/index.ts.tmp
 mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
 
 sed -e "s/\${PHRASE_1}/${PHRASE_1}/" basic/skill.json > basic/skill.json.tmp
@@ -124,4 +124,3 @@ read FULL_DESC
 echo -e "\n"
 sed -e "s/\${FULL_DESC}/${FULL_DESC}/" basic/skill.json > basic/skill.json.tmp
 mv basic/skill.json.tmp basic/skill.json
-
