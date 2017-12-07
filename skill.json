@@ -63,6 +63,7 @@
           "description": "Full Description in German",
         }
       },
+      "category": "$CATEGORY",
       "isAvailableWorldwide": true,
       "testingInstructions": "No special requirements required",
       "distributionCountries": []
