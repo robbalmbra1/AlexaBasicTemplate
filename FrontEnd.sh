@@ -5,8 +5,10 @@ rm -rf basic &> /dev/null
 ask new --template Basic --url https://sandr-photography.com/alexa/templates.json &> /dev/null
 
 #insert user input to skill.json
-#echo "What is the skill name called: "
-#read APP_NAME
+echo "What is the skill name called: "
+read APP_NAME
+sed -e "s/\${APP_NAME}/${APP_NAME}/" basic/lambda/custom/index.ts  > basic/lambda/custom/index.ts.tmp
+mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
 
 #Application category
 Applicationtypes[0]="ALARMS_AND_CLOCKS"
@@ -85,6 +87,9 @@ mv basic/skill.json.tmp basic/skill.json
 echo "Enter first phrase: "
 read PHRASE_1
 echo -e "\n"
+sed -e "s/\${PHRASE_1}/${PHRASE_1}/" basic/lambda/custom/index.ts  > basic/lambda/custom/index.ts.tmp
+mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
+
 sed -e "s/\${PHRASE_1}/${PHRASE_1}/" basic/skill.json > basic/skill.json.tmp
 mv basic/skill.json.tmp basic/skill.json
 
@@ -94,11 +99,17 @@ echo -e "\n"
 sed -e "s/\${PHRASE_2}/${PHRASE_2}/" basic/skill.json > basic/skill.json.tmp
 mv basic/skill.json.tmp basic/skill.json
 
+sed -e "s/\${PHRASE_2}/${PHRASE_2}/" basic/lambda/custom/index.ts  > basic/lambda/custom/index.ts.tmp
+mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
+
 echo "Enter third phrase: "
 read PHRASE_3
 echo -e "\n"
 sed -e "s/\${PHRASE_3}/${PHRASE_3}/" basic/skill.json > basic/skill.json.tmp
 mv basic/skill.json.tmp basic/skill.json
+
+sed -e "s/\${PHRASE_3}/${PHRASE_3}/" basic/lambda/custom/index.ts  > basic/lambda/custom/index.ts.tmp
+mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
 
 #enter short description
 echo "Enter short description: "
