@@ -10,7 +10,7 @@
             "$PHRASE_3"
           ],
           "name": "$NAME",
-          "description": "$FULL_DESC",
+          "description": "$FULL_DESC"
         },
         "en-IN": {
           "summary": "$SHORT_DESC",
@@ -20,7 +20,7 @@
             "$PHRASE_3"
           ],
           "name": "$NAME",
-          "description": "$FULL_DESC",
+          "description": "$FULL_DESC"
         },
         "en-GB": {
           "summary": "$SHORT_DESC",
@@ -30,7 +30,7 @@
             "$PHRASE_3"
           ],
           "name": "$NAME",
-          "description": "$FULL_DESC",
+          "description": "$FULL_DESC"
         },
         "en-CA": {
           "summary": "$SHORT_DESC",
@@ -40,7 +40,7 @@
             "$PHRASE_3"
           ],
           "name": "$NAME",
-          "description": "$FULL_DESC",
+          "description": "$FULL_DESC"
         },
         "en-AU": {
           "summary": "$SHORT_DESC",
@@ -50,7 +50,7 @@
             "$PHRASE_3"
           ],
           "name": "$NAME",
-          "description": "$FULL_DESC",
+          "description": "$FULL_DESC"
         },
         "de-DE": {
           "summary": "Short Description in German",
@@ -60,7 +60,7 @@
             "$PHRASE_3"
           ],
           "name": "$NAME",
-          "description": "Full Description in German",
+          "description": "Full Description in German"
         }
       },
       "category": "$CATEGORY",
