@@ -8,7 +8,7 @@
           "apis": {
             "custom": {
               "endpoint": {
-                "uri": "org-skillname-default"
+                "uri": "ask-custom-basic-profile"
               }
             }
           }

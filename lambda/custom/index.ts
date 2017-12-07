@@ -4,10 +4,10 @@ var languageStrings = {
     'en': {
 			'translation': {
 				'ABOUT_MESSAGE': 'This skill was written by Robert Balmbra',
-				'APP_NAME': '${APP_NAME}',
-				'COMMAND_MESSAGE': 'Say such commands like: \'${PHRASE_1}\',\'${PHRASE_2}\' and \'${PHRASE_3}\'. So how can I help?',
+				'APP_NAME': 'App Finder plus',
+				'COMMAND_MESSAGE': 'Say such commands like: \'What is the news tomorrow\',\'What is the news today\' and \'What is the news on friday\'. So how can I help?',
 				'ASK_MESSAGE': 'So, how can I help?',
-				'LAUNCH_MESSAGE':'Welcome to ${APP_NAME}, so how can I help?',
+				'LAUNCH_MESSAGE':'Welcome to App Finder plus, so how can I help?',
 				'CONN_ERROR_MESSAGE':'Error - Failed to connect to server.',
 				'GOODBYE':'Goodbye!'
 			}

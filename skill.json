@@ -3,67 +3,67 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "summary": "${SHORT_DESC}",
+          "summary": "news app on alexa",
           "examplePhrases": [
-            "${PHRASE_1}",
-            "${PHRASE_2}",
-            "${PHRASE_3}"
+            "What is the news tomorrow",
+            "What is the news today",
+            "What is the news on friday"
           ],
-          "name": "${NAME}",
-          "description": "${FULL_DESC}"
+          "name": "basic",
+          "description": "news app on alexa providing news stories locally and around the world."
         },
         "en-IN": {
-          "summary": "${SHORT_DESC}",
+          "summary": "news app on alexa",
           "examplePhrases": [
-            "${PHRASE_1}",
-            "${PHRASE_2}",
-            "${PHRASE_3}"
+            "What is the news tomorrow",
+            "What is the news today",
+            "What is the news on friday"
           ],
-          "name": "${NAME}",
-          "description": "${FULL_DESC}"
+          "name": "basic",
+          "description": "news app on alexa providing news stories locally and around the world."
         },
         "en-GB": {
-          "summary": "${SHORT_DESC}",
+          "summary": "news app on alexa",
           "examplePhrases": [
-            "${PHRASE_1}",
-            "${PHRASE_2}",
-            "${PHRASE_3}"
+            "What is the news tomorrow",
+            "What is the news today",
+            "What is the news on friday"
           ],
-          "name": "${NAME}",
-          "description": "${FULL_DESC}"
+          "name": "basic",
+          "description": "news app on alexa providing news stories locally and around the world."
         },
         "en-CA": {
-          "summary": "${SHORT_DESC}",
+          "summary": "news app on alexa",
           "examplePhrases": [
-            "${PHRASE_1}",
-            "${PHRASE_2}",
-            "${PHRASE_3}"
+            "What is the news tomorrow",
+            "What is the news today",
+            "What is the news on friday"
           ],
-          "name": "${NAME}",
-          "description": "${FULL_DESC}"
+          "name": "basic",
+          "description": "news app on alexa providing news stories locally and around the world."
         },
         "en-AU": {
-          "summary": "${SHORT_DESC}",
+          "summary": "news app on alexa",
           "examplePhrases": [
-            "${PHRASE_1}",
-            "${PHRASE_2}",
-            "${PHRASE_3}"
+            "What is the news tomorrow",
+            "What is the news today",
+            "What is the news on friday"
           ],
-          "name": "${NAME}",
-          "description": "${FULL_DESC}"
+          "name": "basic",
+          "description": "news app on alexa providing news stories locally and around the world."
         },
         "de-DE": {
           "summary": "Short Description in German",
           "examplePhrases": [
-            "${PHRASE_1}",
-            "${PHRASE_2}",
-            "${PHRASE_3}"
+            "What is the news tomorrow",
+            "What is the news today",
+            "What is the news on friday"
           ],
-          "name": "${NAME}",
+          "name": "basic",
           "description": "Full Description in German"
         }
       },
-      "category": "${CATEGORY}",
+      "category": "WINE_AND_BEVERAGE",
       "isAvailableWorldwide": true,
       "testingInstructions": "No special requirements required",
       "distributionCountries": []
@@ -83,6 +83,6 @@
       "containsAds": false,
       "isChildDirected": false,
       "usesPersonalInfo": false
-    }    
+    }
   }
 }
