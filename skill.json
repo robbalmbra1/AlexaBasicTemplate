@@ -3,67 +3,67 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "summary": "$SHORT_DESC",
+          "summary": "${SHORT_DESC}",
           "examplePhrases": [
-            "$PHRASE_1",
-            "$PHRASE_2",
-            "$PHRASE_3"
+            "${PHRASE_1}",
+            "${PHRASE_2}",
+            "${PHRASE_3}"
           ],
-          "name": "$NAME",
-          "description": "$FULL_DESC",
+          "name": "${NAME}",
+          "description": "${FULL_DESC}",
         },
         "en-IN": {
-          "summary": "$SHORT_DESC",
+          "summary": "${SHORT_DESC}",
           "examplePhrases": [
-            "$PHRASE_1",
-            "$PHRASE_2",
-            "$PHRASE_3"
+            "${PHRASE_1}",
+            "${PHRASE_2}",
+            "${PHRASE_3}"
           ],
-          "name": "$NAME",
-          "description": "$FULL_DESC",
+          "name": "${NAME}",
+          "description": "${FULL_DESC}",
         },
         "en-GB": {
-          "summary": "$SHORT_DESC",
+          "summary": "${SHORT_DESC}",
           "examplePhrases": [
-            "$PHRASE_1",
-            "$PHRASE_2",
-            "$PHRASE_3"
+            "${PHRASE_1}",
+            "${PHRASE_2}",
+            "${PHRASE_3}"
           ],
-          "name": "$NAME",
-          "description": "$FULL_DESC",
+          "name": "${NAME}",
+          "description": "${FULL_DESC}",
         },
         "en-CA": {
-          "summary": "$SHORT_DESC",
+          "summary": "${SHORT_DESC}",
           "examplePhrases": [
-            "$PHRASE_1",
-            "$PHRASE_2",
-            "$PHRASE_3"
+            "${PHRASE_1}",
+            "${PHRASE_2}",
+            "${PHRASE_3}"
           ],
-          "name": "$NAME",
-          "description": "$FULL_DESC",
+          "name": "${NAME}",
+          "description": "${FULL_DESC}",
         },
         "en-AU": {
-          "summary": "$SHORT_DESC",
+          "summary": "${SHORT_DESC}",
           "examplePhrases": [
-            "$PHRASE_1",
-            "$PHRASE_2",
-            "$PHRASE_3"
+            "${PHRASE_1}",
+            "${PHRASE_2}",
+            "${PHRASE_3}"
           ],
-          "name": "$NAME",
-          "description": "$FULL_DESC",
+          "name": "${NAME}",
+          "description": "${FULL_DESC}",
         },
         "de-DE": {
           "summary": "Short Description in German",
           "examplePhrases": [
-            "$PHRASE_1",
-            "$PHRASE_2",
-            "$PHRASE_3"
+            "${PHRASE_1}",
+            "${PHRASE_2}",
+            "${PHRASE_3}"
           ],
-          "name": "$NAME",
+          "name": "${NAME}",
           "description": "Full Description in German",
         }
       },
-      "category": "$CATEGORY",
+      "category": "${CATEGORY}",
       "isAvailableWorldwide": true,
       "testingInstructions": "No special requirements required",
       "distributionCountries": []
