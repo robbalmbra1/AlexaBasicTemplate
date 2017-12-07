@@ -3,64 +3,64 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "summary": "Short Description",
+          "summary": "$SHORT_DESC",
           "examplePhrases": [
             "$PHRASE_1",
             "$PHRASE_2",
             "$PHRASE_3"
           ],
           "name": "$NAME",
-          "description": "Full Description",
+          "description": "$FULL_DESC",
         },
         "en-IN": {
-          "summary": "Short Description",
+          "summary": "$SHORT_DESC",
           "examplePhrases": [
             "$PHRASE_1",
             "$PHRASE_2",
             "$PHRASE_3"
           ],
           "name": "$NAME",
-          "description": "Full Description",
+          "description": "$FULL_DESC",
         },
         "en-GB": {
-          "summary": "Short Description",
+          "summary": "$SHORT_DESC",
           "examplePhrases": [
             "$PHRASE_1",
             "$PHRASE_2",
             "$PHRASE_3"
           ],
           "name": "$NAME",
-          "description": "Full Description",
+          "description": "$FULL_DESC",
         },
         "en-CA": {
-          "summary": "Short Description",
+          "summary": "$SHORT_DESC",
           "examplePhrases": [
             "$PHRASE_1",
             "$PHRASE_2",
             "$PHRASE_3"
           ],
           "name": "$NAME",
-          "description": "Full Description",
+          "description": "$FULL_DESC",
         },
         "en-AU": {
-          "summary": "Short Description",
+          "summary": "$SHORT_DESC",
           "examplePhrases": [
             "$PHRASE_1",
             "$PHRASE_2",
             "$PHRASE_3"
           ],
           "name": "$NAME",
-          "description": "Full Description",
+          "description": "$FULL_DESC",
         },
         "de-DE": {
-          "summary": "Short Description",
+          "summary": "Short Description in German",
           "examplePhrases": [
             "$PHRASE_1",
             "$PHRASE_2",
             "$PHRASE_3"
           ],
           "name": "$NAME",
-          "description": "Full Description",
+          "description": "Full Description in German",
         }
       },
       "isAvailableWorldwide": true,
