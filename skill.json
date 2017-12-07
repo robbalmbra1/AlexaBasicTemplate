@@ -9,13 +9,8 @@
             "${PHRASE_2}",
             "${PHRASE_3}"
           ],
-<<<<<<< HEAD
           "name": "${NAME}",
-          "description": "${FULL_DESC}",
-=======
-          "name": "$NAME",
-          "description": "$FULL_DESC"
->>>>>>> eb5ffcd0a8cad03092bb8c08a36ba210d8c4bd5e
+          "description": "${FULL_DESC}"
         },
         "en-IN": {
           "summary": "${SHORT_DESC}",
@@ -24,13 +19,8 @@
             "${PHRASE_2}",
             "${PHRASE_3}"
           ],
-<<<<<<< HEAD
           "name": "${NAME}",
-          "description": "${FULL_DESC}",
-=======
-          "name": "$NAME",
-          "description": "$FULL_DESC"
->>>>>>> eb5ffcd0a8cad03092bb8c08a36ba210d8c4bd5e
+          "description": "${FULL_DESC}"
         },
         "en-GB": {
           "summary": "${SHORT_DESC}",
@@ -39,13 +29,8 @@
             "${PHRASE_2}",
             "${PHRASE_3}"
           ],
-<<<<<<< HEAD
           "name": "${NAME}",
-          "description": "${FULL_DESC}",
-=======
-          "name": "$NAME",
-          "description": "$FULL_DESC"
->>>>>>> eb5ffcd0a8cad03092bb8c08a36ba210d8c4bd5e
+          "description": "${FULL_DESC}"
         },
         "en-CA": {
           "summary": "${SHORT_DESC}",
@@ -54,13 +39,8 @@
             "${PHRASE_2}",
             "${PHRASE_3}"
           ],
-<<<<<<< HEAD
           "name": "${NAME}",
-          "description": "${FULL_DESC}",
-=======
-          "name": "$NAME",
-          "description": "$FULL_DESC"
->>>>>>> eb5ffcd0a8cad03092bb8c08a36ba210d8c4bd5e
+          "description": "${FULL_DESC}"
         },
         "en-AU": {
           "summary": "${SHORT_DESC}",
@@ -69,13 +49,8 @@
             "${PHRASE_2}",
             "${PHRASE_3}"
           ],
-<<<<<<< HEAD
           "name": "${NAME}",
-          "description": "${FULL_DESC}",
-=======
-          "name": "$NAME",
-          "description": "$FULL_DESC"
->>>>>>> eb5ffcd0a8cad03092bb8c08a36ba210d8c4bd5e
+          "description": "${FULL_DESC}"
         },
         "de-DE": {
           "summary": "Short Description in German",
@@ -84,13 +59,8 @@
             "${PHRASE_2}",
             "${PHRASE_3}"
           ],
-<<<<<<< HEAD
           "name": "${NAME}",
-          "description": "Full Description in German",
-=======
-          "name": "$NAME",
           "description": "Full Description in German"
->>>>>>> eb5ffcd0a8cad03092bb8c08a36ba210d8c4bd5e
         }
       },
       "category": "${CATEGORY}",
