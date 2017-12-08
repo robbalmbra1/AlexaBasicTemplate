@@ -248,8 +248,9 @@ else
 fi
 
 echo "Adding skill id to test framework"
-skill_id=$(cat ${directory}/.ask/config | grep "skill_id" | awk '{print $2}' | cut -c 2- | rev | cut -c 3- | rev)
+SKILL_ID=$(cat ${directory}/.ask/config | grep "skill_id" | awk '{print $2}' | cut -c 2- | rev | cut -c 3- | rev)
+sed -e "s/\${SKILL_ID}/${SKILL_ID}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
+mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 
-#sed -e "s/\${APP_NAME}/${APP_NAME}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
-#mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
+echo "Please add the relevant skill request from the test web interface to $dictionary/lambda/custom/test/index.js to test using the framework."
 
