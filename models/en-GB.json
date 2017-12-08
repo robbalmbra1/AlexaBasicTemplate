@@ -17,10 +17,12 @@
                   "samples": []
                 },
                 {
-                    "name":"WelcomeIntent"
+                    "name":"WelcomeIntent",
+                    "samples": ["${SAMPLES_1}"]
                 },
                 {
-                    "name":"OtherIntent"
+                    "name":"OtherIntent",
+                    "samples": ["${SAMPLES_2}"]
                 }
             ]
         }
