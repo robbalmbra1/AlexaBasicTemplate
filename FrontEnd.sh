@@ -229,8 +229,14 @@ else
   done
 fi
 
-echo "Deploying alexa skill"
-cd $directory
-ask deploy
+echo "User input is completed, do you want to deploy an initial skill and lambda code to amazon? (Y/N): "
+read UserInput
 
-echo "Please update the logos of the skill through the alexa skill interface"
+if [[ $answer = 'Y' || $answer = 'Y' ]] ; then
+  echo "Deploying alexa skill"
+  cd $directory
+  ask deploy
+  echo "Please update the logos of the skill through the alexa skill interface"
+else
+  echo "To deploy in the future please execute 'ask deploy'."
+fi
