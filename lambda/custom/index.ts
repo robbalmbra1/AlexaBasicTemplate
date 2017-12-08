@@ -14,7 +14,7 @@ var languageStrings = {
     },
     'de-DE': {
 			'translation': {
-				'ABOUT_MESSAGE': 'Diese Fähigkeit wurde von Robert Balmbra geschrieben',
+				'ABOUT_MESSAGE': 'Diese Fähigkeit wurde von ${FULL_NAME} geschrieben',
 				'APP_NAME': '',
 				'COMMAND_MESSAGE': '',
 				'ASK_MESSAGE': 'Also, wie kann ich helfen?',
