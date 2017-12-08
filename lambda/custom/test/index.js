@@ -9,7 +9,7 @@ describe("Testing the Intent", function() {
         var speechError = null;
 
         before(function(done) {
-                index.Handler({}, ctx);
+                index.handler({}, ctx);
                 ctx.Promise
                         .then(response => {speechResponse = response; console.log(speechResponse); done(); })
                         .catch(error => { speechError = error; done(); })
