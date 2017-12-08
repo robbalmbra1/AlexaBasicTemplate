@@ -1,12 +1,12 @@
-#ask init
-rm -rf basic &> /dev/null
+#!/bin/bash
 
-#get basic template
-ask new --template Basic --url https://sandr-photography.com/alexa/templates.json &> /dev/null
-
-#insert user input to skill.json
 echo "What is the skill name called: "
 read APP_NAME
+
+#get basic template
+ask new --skill-name "${APP_NAME}" --template Basic --url https://sandr-photography.com/alexa/templates.json &> /dev/null
+
+#insert user input to skill.json
 sed -e "s/\${APP_NAME}/${APP_NAME}/" basic/lambda/custom/index.ts  > basic/lambda/custom/index.ts.tmp
 mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
 
