@@ -129,3 +129,11 @@ read FULL_DESC
 echo -e "\n"
 sed -e "s/\${FULL_DESC}/${FULL_DESC}/" basic/skill.json > basic/skill.json.tmp
 mv basic/skill.json.tmp basic/skill.json
+
+#Loop over models and adjust name
+FILES=basic/models/*
+for f in $FILES
+do
+  # take action on each file. $f store current file name
+  echo $f
+done
