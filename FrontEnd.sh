@@ -242,7 +242,7 @@ if [[ $answer = 'Y' || $answer = 'y' ]] ; then
   echo "Deploying initial alexa skill"
   cd $directory
   ask deploy
-  echo "Please update the logos of the skill through the alexa skill interface"
+  echo "Please update the logos of the skill through the alexa skill interface, To deploy in the future please execute 'ask deploy'."
 else
   echo "To deploy in the future please execute 'ask deploy'."
 fi
