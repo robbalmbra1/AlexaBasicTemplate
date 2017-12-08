@@ -23,13 +23,13 @@ echo "Please enter a final keyword that describes the skill: "
 read KEYWORD_3
 
 #write keywords to skill.json
-sed -e "s/\"\${KEYWORD_1}\"/\"${KEYWORD_1}\"/" basic/skill.json > basic/skill.json.tmp
+sed -e "s/\${KEYWORD_1}/${KEYWORD_1}/" basic/skill.json > basic/skill.json.tmp
 mv basic/skill.json.tmp basic/skill.json
 
-sed -e "s/\"\${KEYWORD_2}\"/\"${KEYWORD_2}\"/" basic/skill.json > basic/skill.json.tmp
+sed -e "s/\${KEYWORD_2}/${KEYWORD_2}/" basic/skill.json > basic/skill.json.tmp
 mv basic/skill.json.tmp basic/skill.json
 
-sed -e "s/\"\${KEYWORD_3}\"/\"${KEYWORD_3}\"/" basic/skill.json > basic/skill.json.tmp
+sed -e "s/\${KEYWORD_3}/${KEYWORD_3}/" basic/skill.json > basic/skill.json.tmp
 mv basic/skill.json.tmp basic/skill.json
 
 echo -e "\n"
