@@ -10,6 +10,9 @@ read APP_NAME
 sed -e "s/\${APP_NAME}/${APP_NAME}/" basic/lambda/custom/index.ts  > basic/lambda/custom/index.ts.tmp
 mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
 
+sed -e "s/\${NAME}/${APP_NAME}/" basic/skill.json > basic/skill.json.tmp
+mv basic/skill.json.tmp basic/skill.json
+
 #Application category
 Applicationtypes[0]="ALARMS_AND_CLOCKS"
 Applicationtypes[1]="ASTROLOGY"
