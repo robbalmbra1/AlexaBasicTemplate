@@ -3,7 +3,7 @@ import * as Alexa from "alexa-sdk";
 var languageStrings = {
     'en': {
 			'translation': {
-				'ABOUT_MESSAGE': 'This skill was written by Robert Balmbra',
+				'ABOUT_MESSAGE': 'This skill was written by ${FULL_NAME}',
 				'APP_NAME': '${APP_NAME}',
 				'COMMAND_MESSAGE': 'Say such commands like: \'${PHRASE_1}\',\'${PHRASE_2}\' and \'${PHRASE_3}\'. So how can I help?',
 				'ASK_MESSAGE': 'So, how can I help?',
