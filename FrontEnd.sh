@@ -90,7 +90,9 @@ echo -e "\n"
 sed -e "s/\${PHRASE_1}/${PHRASE_1}/" basic/lambda/custom/index.ts  > basic/lambda/custom/index.ts.tmp
 mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
 
-sed -e "s/\${PHRASE_1}/${PHRASE_1}/" basic/skill.json > basic/skill.json.tmp
+output="Alexa ask ${APP_NAME}, ${PHRASE_1}"
+
+sed -e "s/\${PHRASE_1}/${output}/" basic/skill.json > basic/skill.json.tmp
 mv basic/skill.json.tmp basic/skill.json
 
 echo "Enter second phrase: "
