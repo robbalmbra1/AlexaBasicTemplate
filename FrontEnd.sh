@@ -239,10 +239,17 @@ echo "User input is completed, do you want to deploy an initial skill and lambda
 read UserInput
 
 if [[ $answer = 'Y' || $answer = 'y' ]] ; then
-  echo "Deploying alexa skill"
+  echo "Deploying initial alexa skill"
   cd $directory
   ask deploy
   echo "Please update the logos of the skill through the alexa skill interface"
 else
   echo "To deploy in the future please execute 'ask deploy'."
 fi
+
+echo "Adding skill id to test framework"
+skill_id=$(cat ${directory}/.ask/config | grep "skill_id" | awk '{print $2}' | cut -c 2- | rev | cut -c 3- | rev)
+
+#sed -e "s/\${APP_NAME}/${APP_NAME}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
+#mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
+
