@@ -18,11 +18,11 @@
                 },
                 {
                     "name":"WelcomeIntent",
-                    "samples": ["${SAMPLES_1}"]
+                    "samples": [${SAMPLES_1}]
                 },
                 {
                     "name":"OtherIntent",
-                    "samples": ["${SAMPLES_2}"]
+                    "samples": [${SAMPLES_2}]
                 }
             ]
         }
