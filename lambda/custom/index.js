@@ -67,7 +67,7 @@ var handlers = {
 var handler = /** @class */ (function () {
     function handler(event, context, callback) {
         var alexa = Alexa.handler(event, context);
-        alexa.appId = "";
+        alexa.appId = "${SKILL_ID}";
         alexa.resources = languageStrings;
         alexa.registerHandlers(handlers);
         alexa.execute();
