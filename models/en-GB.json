@@ -1,7 +1,7 @@
 {
     "interactionModel":{
         "languageModel":{
-            "invocationName":"hello world",
+            "invocationName":"${APP_NAME}",
             "types":[],
             "intents":[
                 {
