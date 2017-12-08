@@ -28,3 +28,5 @@ build/Release
 #node_modules
 #test/index.js
 skill.jsom
+lambda/custom/index.ts
+lambda/custom/index.js
