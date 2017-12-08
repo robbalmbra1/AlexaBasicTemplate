@@ -227,4 +227,4 @@ echo "Deploying alexa skill"
 cd basic
 ask deploy
 
-echo "Please update logo of skill through the alexa skill interface"
+echo "Please update the logos of the skill through the alexa skill interface"
