@@ -19,6 +19,12 @@ mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 sed -e "s/\${NAME}/${APP_NAME}/" $directory/skill.json > $directory/skill.json.tmp
 mv $directory/skill.json.tmp $directory/skill.json
 
+echo "What is your name: "
+read FULL_NAME
+
+sed -e "s/\${FULL_NAME}/${FULL_NAME}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
+mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
+
 echo "Please enter a keyword that describes the skill: "
 read KEYWORD_1
 
