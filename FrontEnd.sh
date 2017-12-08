@@ -18,6 +18,7 @@ FILES=basic/models/*
 for file in $FILES
 do
   # take action on each file. $f store current file name
+  echo $file
   sed -e "s/\${APP_NAME}/${APP_NAME}/" basic/models/$file > basic/models/$file.tmp
   mv basic/models/$file.tmp basic/models/$file
 done
