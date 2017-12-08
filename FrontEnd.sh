@@ -13,6 +13,27 @@ mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
 sed -e "s/\${NAME}/${APP_NAME}/" basic/skill.json > basic/skill.json.tmp
 mv basic/skill.json.tmp basic/skill.json
 
+echo "Please enter a keyword that describes the skill: "
+read KEYWORD_1
+
+echo "Please enter another keyword that describes the skill: "
+read KEYWORD_2
+
+echo "Please enter a final keyword that describes the skill: "
+read KEYWORD_3
+
+#write keywords to skill.json
+sed -e "s/\"\${KEYWORD_1}\"/${KEYWORD_1}/" basic/skill.json > basic/skill.json.tmp
+mv basic/skill.json.tmp basic/skill.json
+
+sed -e "s/\"\${KEYWORD_2}\"/${KEYWORD_2}/" basic/skill.json > basic/skill.json.tmp
+mv basic/skill.json.tmp basic/skill.json
+
+sed -e "s/\"\${KEYWORD_3}\"/${KEYWORD_3}/" basic/skill.json > basic/skill.json.tmp
+mv basic/skill.json.tmp basic/skill.json
+
+echo -e "\n"
+
 #Loop over models and adjust name
 FILES=basic/models/*
 for file in $FILES
