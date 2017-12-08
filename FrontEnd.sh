@@ -13,6 +13,15 @@ mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
 sed -e "s/\${NAME}/${APP_NAME}/" basic/skill.json > basic/skill.json.tmp
 mv basic/skill.json.tmp basic/skill.json
 
+#Loop over models and adjust name
+FILES=basic/models/*
+for file in $FILES
+do
+  # take action on each file. $f store current file name
+  sed -e "s/\${APP_NAME}/${APP_NAME}/" basic/models/$file > basic/models/$file.tmp
+  mv basic/models/$file.tmp basic/models/$file
+done
+
 #Application category
 Applicationtypes[0]="ALARMS_AND_CLOCKS"
 Applicationtypes[1]="ASTROLOGY"
@@ -129,11 +138,3 @@ read FULL_DESC
 echo -e "\n"
 sed -e "s/\${FULL_DESC}/${FULL_DESC}/" basic/skill.json > basic/skill.json.tmp
 mv basic/skill.json.tmp basic/skill.json
-
-#Loop over models and adjust name
-FILES=basic/models/*
-for f in $FILES
-do
-  # take action on each file. $f store current file name
-  echo $f
-done
