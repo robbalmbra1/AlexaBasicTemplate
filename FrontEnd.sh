@@ -140,6 +140,68 @@ echo -e "\n"
 sed -e "s/\${FULL_DESC}/${FULL_DESC}/" basic/skill.json > basic/skill.json.tmp
 mv basic/skill.json.tmp basic/skill.json
 
+echo "Do you want to use your phrases as samples for the two sample utterances(Y/N): "
+read answerphrase
+
+if [[ $answerphrase = 'N' || $answerphrase = 'n' ]] ; then
+  magic_variable=()
+  utterances=($(grep "\"name\":" basic/models/en-US.json  | grep -v AMAZON | tr -d ' ' | cut -c 9- | sed 's/.$//'))
+
+  i=0
+  for d in "${utterances[@]}"
+  do
+    output=""
+    j=0
+    while true; do
+      if [[ $j != 0 ]]; then
+  	output+=','
+      fi
+      echo "Enter sample for $d: "
+      read sample
+      output+=\"$sample\"
+
+      echo "Do you want to add other sample (Y/N)? "
+      read answer
+
+      if [[ $answer = 'N' || $answer = 'n' ]] ; then
+  	break
+      fi
+      ((j=j+1))
+    done
+    echo -e "\n"
+    magic_variable[$i]=$output
+    ((i=i+1))
+  done
+
+  #Loop over utterances and files
+  #1st item is equal to 1st set of utterances
+
+  MODELS=basic/models/*
+  for f in $MODELS
+  do
+    k=1
+    for i in "${magic_variable[@]}"
+      do
+        sed -e "s/\"\${SAMPLES_$k}\"/${i}/" $f  > $f.tmp
+        mv $f.tmp $f
+        ((k=k+1))
+      done
+  done
+else
+  #loop over files and apply phrases
+  MODELS=basic/models/*
+  for f in $MODELS
+  do
+    i=\"$PHRASE_1\",\"$PHRASE_2\"
+    sed -e "s/\"\${SAMPLES_1}\"/${i}/" $f  > $f.tmp
+    mv $f.tmp $f
+
+    i=\"$PHRASE_3\"
+    sed -e "s/\"\${SAMPLES_2}\"/${i}/" $f  > $f.tmp
+    mv $f.tmp $f
+  done
+fi
+
 echo "Deploying alexa skill"
 cd basic
 ask deploy
