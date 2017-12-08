@@ -60,7 +60,7 @@
             "${PHRASE_3}"
           ],
           "name": "${NAME}",
-          "description": "Full Description in German",
+          "description": "Full Description in German"
         }
       },
       "category": "${CATEGORY}",
