@@ -1,17 +1,23 @@
 #!/bin/bash
 
+if ! type "ask" > /dev/null; then
+  echo "Error - 'Ask' isnt installed, please install it"
+  exit 0
+fi
+
 echo "What is the skill name called: "
 read APP_NAME
 
+directory=$(echo $APP_NAME | tr "[:upper:]" "[:lower:]" | sed 's/ /-/g') #pc made directory from APP_NAME
 #get basic template
 ask new --skill-name "${APP_NAME}" --template Basic --url https://sandr-photography.com/alexa/templates.json &> /dev/null
 
 #insert user input to skill.json
-sed -e "s/\${APP_NAME}/${APP_NAME}/" basic/lambda/custom/index.ts  > basic/lambda/custom/index.ts.tmp
-mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
+sed -e "s/\${APP_NAME}/${APP_NAME}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
+mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 
-sed -e "s/\${NAME}/${APP_NAME}/" basic/skill.json > basic/skill.json.tmp
-mv basic/skill.json.tmp basic/skill.json
+sed -e "s/\${NAME}/${APP_NAME}/" $directory/skill.json > $directory/skill.json.tmp
+mv $directory/skill.json.tmp $directory/skill.json
 
 echo "Please enter a keyword that describes the skill: "
 read KEYWORD_1
@@ -23,19 +29,19 @@ echo "Please enter a final keyword that describes the skill: "
 read KEYWORD_3
 
 #write keywords to skill.json
-sed -e "s/\${KEYWORD_1}/${KEYWORD_1}/" basic/skill.json > basic/skill.json.tmp
-mv basic/skill.json.tmp basic/skill.json
+sed -e "s/\${KEYWORD_1}/${KEYWORD_1}/" $directory/skill.json > $directory/skill.json.tmp
+mv $directory/skill.json.tmp $directory/skill.json
 
-sed -e "s/\${KEYWORD_2}/${KEYWORD_2}/" basic/skill.json > basic/skill.json.tmp
-mv basic/skill.json.tmp basic/skill.json
+sed -e "s/\${KEYWORD_2}/${KEYWORD_2}/" $directory/skill.json > $directory/skill.json.tmp
+mv $directory/skill.json.tmp $directory/skill.json
 
-sed -e "s/\${KEYWORD_3}/${KEYWORD_3}/" basic/skill.json > basic/skill.json.tmp
-mv basic/skill.json.tmp basic/skill.json
+sed -e "s/\${KEYWORD_3}/${KEYWORD_3}/" $directory/skill.json > $directory/skill.json.tmp
+mv $directory/skill.json.tmp $directory/skill.json
 
 echo -e "\n"
 
 #Loop over models and adjust name
-FILES=basic/models/*
+FILES=$directory/models/*
 for file in $FILES
 do
   # take action on each file. $f store current file name
@@ -114,59 +120,59 @@ read choice
 categorycalc=`expr $choice - 1`
 CATEGORY=${Applicationtypes[$categorycalc]}
 echo -e "\n"
-sed -e "s/\${CATEGORY}/${CATEGORY}/" basic/skill.json > basic/skill.json.tmp
-mv basic/skill.json.tmp basic/skill.json
+sed -e "s/\${CATEGORY}/${CATEGORY}/" $directory/skill.json > $directory/skill.json.tmp
+mv $directory/skill.json.tmp $directory/skill.json
 
 #phrases input
 echo "Enter first phrase: "
 read PHRASE_1
 echo -e "\n"
-sed -e "s/\${PHRASE_1}/${PHRASE_1}/" basic/lambda/custom/index.ts  > basic/lambda/custom/index.ts.tmp
-mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
+sed -e "s/\${PHRASE_1}/${PHRASE_1}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
+mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 
 output="Alexa ask ${APP_NAME}, ${PHRASE_1}"
 
-sed -e "s/\${PHRASE_1}/${output}/" basic/skill.json > basic/skill.json.tmp
-mv basic/skill.json.tmp basic/skill.json
+sed -e "s/\${PHRASE_1}/${output}/" $directory/skill.json > $directory/skill.json.tmp
+mv $directory/skill.json.tmp $directory/skill.json
 
 echo "Enter second phrase: "
 read PHRASE_2
 echo -e "\n"
-sed -e "s/\${PHRASE_2}/${PHRASE_2}/" basic/skill.json > basic/skill.json.tmp
-mv basic/skill.json.tmp basic/skill.json
+sed -e "s/\${PHRASE_2}/${PHRASE_2}/" $directory/skill.json > $directory/skill.json.tmp
+mv $directory/skill.json.tmp $directory/skill.json
 
-sed -e "s/\${PHRASE_2}/${PHRASE_2}/" basic/lambda/custom/index.ts  > basic/lambda/custom/index.ts.tmp
-mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
+sed -e "s/\${PHRASE_2}/${PHRASE_2}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
+mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 
 echo "Enter third phrase: "
 read PHRASE_3
 echo -e "\n"
-sed -e "s/\${PHRASE_3}/${PHRASE_3}/" basic/skill.json > basic/skill.json.tmp
-mv basic/skill.json.tmp basic/skill.json
+sed -e "s/\${PHRASE_3}/${PHRASE_3}/" $directory/skill.json > $directory/skill.json.tmp
+mv $directory/skill.json.tmp $directory/skill.json
 
-sed -e "s/\${PHRASE_3}/${PHRASE_3}/" basic/lambda/custom/index.ts  > basic/lambda/custom/index.ts.tmp
-mv basic/lambda/custom/index.ts.tmp basic/lambda/custom/index.ts
+sed -e "s/\${PHRASE_3}/${PHRASE_3}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
+mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 
 #enter short description
 echo "Enter short description: "
 read SHORT_DESC
 echo -e "\n"
-sed -e "s/\${SHORT_DESC}/${SHORT_DESC}/" basic/skill.json > basic/skill.json.tmp
-mv basic/skill.json.tmp basic/skill.json
+sed -e "s/\${SHORT_DESC}/${SHORT_DESC}/" $directory/skill.json > $directory/skill.json.tmp
+mv $directory/skill.json.tmp $directory/skill.json
 
 echo "Enter long description: "
 #enter long description
 read FULL_DESC
 echo -e "\n"
-sed -e "s/\${FULL_DESC}/${FULL_DESC}/" basic/skill.json > basic/skill.json.tmp
-mv basic/skill.json.tmp basic/skill.json
+sed -e "s/\${FULL_DESC}/${FULL_DESC}/" $directory/skill.json > $directory/skill.json.tmp
+mv $directory/skill.json.tmp $directory/skill.json
 
 echo "Do you want to use your phrases as samples for the two sample utterances(Y/N): "
 read answerphrase
 
 if [[ $answerphrase = 'N' || $answerphrase = 'n' ]] ; then
   magic_variable=()
-  utterances=($(grep "\"name\":" basic/models/en-US.json  | grep -v AMAZON | tr -d ' ' | cut -c 9- | sed 's/.$//'))
+  utterances=($(grep "\"name\":" $directory/models/en-US.json  | grep -v AMAZON | tr -d ' ' | cut -c 9- | sed 's/.$//'))
 
   i=0
   for d in "${utterances[@]}"
@@ -197,7 +203,7 @@ if [[ $answerphrase = 'N' || $answerphrase = 'n' ]] ; then
   #Loop over utterances and files
   #1st item is equal to 1st set of utterances
 
-  MODELS=basic/models/*
+  MODELS=$directory/models/*
   for f in $MODELS
   do
     k=1
@@ -210,7 +216,7 @@ if [[ $answerphrase = 'N' || $answerphrase = 'n' ]] ; then
   done
 else
   #loop over files and apply phrases
-  MODELS=basic/models/*
+  MODELS=$directory/models/*
   for f in $MODELS
   do
     i=\"$PHRASE_1\",\"$PHRASE_2\"
@@ -224,7 +230,7 @@ else
 fi
 
 echo "Deploying alexa skill"
-cd basic
+cd $directory
 ask deploy
 
 echo "Please update the logos of the skill through the alexa skill interface"
