@@ -2,7 +2,7 @@
 
 Basic template and interactive frontend for ask CLI.
 
-Run `ask init` to login to your amazon account viayour browser, if you havent got ask, install it `npm install -g ask-cli`.
+Run `ask init` to login to your amazon account via your browser, if you havent got ask, install it `npm install -g ask-cli`.
 
 Then Download and run FrontEnd.sh, once run answer the questions, this will generate the needed files to deploy the skill.
 
