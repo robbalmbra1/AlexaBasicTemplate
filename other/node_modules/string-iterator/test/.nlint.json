@@ -1,0 +1,10 @@
+{
+	"linters": {
+		"jshint": {
+			"predef": {
+				"munit": true,
+				"StringIterator": true
+			}
+		}
+	}
+}
