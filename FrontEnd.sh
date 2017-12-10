@@ -252,11 +252,12 @@ SKILL_ID=$(cat ${directory}/.ask/config | grep "skill_id" | awk '{print $2}' | c
 sed -e "s/\${SKILL_ID}/${SKILL_ID}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
 mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 
+sed -e "s/\${SKILL_ID}/${SKILL_ID}/" $directory/lambda/custom/test/index.js  > $directory/lambda/custom/test/index.js.tmp
+mv $directory/lambda/custom/test/index.js.tmp $directory/lambda/custom/test/index.js
+
 echo "As skill testing is disabled by default when a skill is made through the ask CLI, do you want me to turn testing on and copy a relevant request template for the testing framework(Y/N): "
 read answer
 
 if [[ $answer = 'Y' || $answer = 'y' ]] ; then
   node $directory/other/index.js  
-else
-  echo "Please add the relevant skill request from the test web interface to $dictionary/lambda/custom/test/index.js to test using the framework."
 fi
