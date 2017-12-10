@@ -249,15 +249,15 @@ else
 fi
 
 echo "Generating index.js using tsc"
-cd $directory
+cd $directory/lambda/custom/
 tsc index.ts
+
+cd ../../../
 
 echo -e "\nDeploying initial alexa skill, please wait"
 cd $directory
 ask deploy
 echo -e "Warning - Please update the logos of the skill through the alexa skill interface, To deploy in the future please execute 'ask deploy'.\n"
-
-cd ..
 
 echo -e "\nAdding skill id to test framework"
 SKILL_ID=$(cat ${directory}/.ask/config | grep "skill_id" | awk '{print $2}' | cut -c 2- | rev | cut -c 3- | rev)
