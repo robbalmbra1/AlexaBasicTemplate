@@ -238,7 +238,7 @@ fi
 echo "User input is completed, do you want to deploy an initial skill and lambda code to amazon? (Y/N): "
 read UserInput
 
-if [[ $answer = 'Y' || $answer = 'y' ]] ; then
+if [[ $UserInput = 'Y' || $UserInput = 'y' ]] ; then
   echo "Deploying initial alexa skill"
   cd $directory
   ask deploy
