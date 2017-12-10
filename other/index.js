@@ -11,29 +11,11 @@ if(myArgs.length == 3){
     .click('#signInSubmit')
     .wait('.communications')
     .then(() => nightmare.goto('https://developer.amazon.com/edw/home.html#/skill/' + myArgs[2]  + '/en_US/testing'))
-    .then(() => nightmare.wait('.edw-voice-input'))
-    .then(() => nightmare.check('.edw-toggle-switch-checkbox'))
-    .then(() => nightmare.type('#edw-test-utteranceTextField',"test"))
-    .then(() => nightmare.click('#edw-test-textAskButton'))
-    .then(() => nightmare.wait(1500))
-    .then(function(){
-      return nightmare.evaluate(function(){
-       	//return document.querySelector('.CodeMirror-code' > *).textContent;
-        return  $('.cm-string').text(); 
-        //return document.querySelector('.CodeMirror-code').innerHTML;
-      });
-    })
-    .then((text) => {
-	var splitlines = text.lines
-	console.log(text);
-	for(var i=0;i<splitlines.length; i+=1){
-		if(i % 2 == 1){
-			console.log(splitlines[i]);
-		}
-	}
-    })
+    .then(() => nightmare.wait('#EdwAppEnableToggle'))
+    .then(() => nightmare.check('#EdwAppEnableToggle'))
+    .then(() => nightmare.wait(5000))
+    .then(() => console.log("Success - Skill testing has been enabled"))
     .then(() => nightmare.end())
-
 
 }else{
   console.log("index.js [USERNAME] [PASSWORD] [SKILL-ID]");
