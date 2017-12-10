@@ -239,7 +239,7 @@ fi
 echo "Deploying initial alexa skill, please wait"
 cd $directory
 ask deploy
-echo -e "Please update the logos of the skill through the alexa skill interface, To deploy in the future please execute 'ask deploy'.\n"
+echo -e "Warning - Please update the logos of the skill through the alexa skill interface, To deploy in the future please execute 'ask deploy'.\n"
 
 cd ..
 
