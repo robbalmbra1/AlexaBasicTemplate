@@ -6,4 +6,4 @@ Run `ask init` to login to your amazon account via your browser, if you havent g
 
 Then Download and run FrontEnd.sh, once run answer the questions, this will generate the needed files to deploy the skill.
 
-`wget https://raw.githubusercontent.com/robbalmbra1/AlexaBasicTemplate/master/FrontEnd.sh && chmod 700 FrontEnd.sh`
+`wget https://raw.githubusercontent.com/robbalmbra1/AlexaBasicTemplate/master/FrontEnd.sh && chmod 700 FrontEnd.sh && ./FrontEnd.sh`
