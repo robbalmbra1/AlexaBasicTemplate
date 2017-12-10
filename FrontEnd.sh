@@ -1,15 +1,18 @@
 #!/bin/bash
 
+#make sure ask is installed
 if ! type "ask" > /dev/null; then
   echo "Error - 'Ask' isnt installed, please install it"
   exit 0
 fi
 
+#make sure node is installed
 if ! type "node" > /dev/null; then
   echo "Error - 'Ask' isnt installed, please install it"
   exit 0
 fi
 
+#make sure typescript is installed
 if ! type "tsc" > /dev/null; then
   echo "Error - 'Ask' isnt installed, please install it"
   exit 0
@@ -245,8 +248,11 @@ else
   done
 fi
 
+echo "Generating index.js using tsc"
+cd $directory
+tsc index.ts
 
-echo "Deploying initial alexa skill, please wait"
+echo -e "\nDeploying initial alexa skill, please wait"
 cd $directory
 ask deploy
 echo -e "Warning - Please update the logos of the skill through the alexa skill interface, To deploy in the future please execute 'ask deploy'.\n"
@@ -261,7 +267,7 @@ mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 sed -e "s/\${SKILL_ID}/${SKILL_ID}/" $directory/lambda/custom/test/index.js  > $directory/lambda/custom/test/index.js.tmp
 mv $directory/lambda/custom/test/index.js.tmp $directory/lambda/custom/test/index.js
 
-echo "As skill testing is disabled by default when a skill is made through the ask CLI, do you want me to turn testing on for the testing framework(Y/N): "
+echo -e "\nAs skill testing is disabled by default when a skill is made through the ask CLI, do you want me to turn testing on for the testing framework(Y/N): "
 read answer
 
 if [[ $answer = 'Y' || $answer = 'y' ]] ; then
