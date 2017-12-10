@@ -250,8 +250,6 @@ fi
 
 echo "Generating index.js using tsc"
 cd $directory/lambda/custom/
-pwd
-ls -al
 tsc index.ts
 
 cd ../../../
