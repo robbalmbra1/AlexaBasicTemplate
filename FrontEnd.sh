@@ -247,7 +247,7 @@ else
   echo "To deploy in the future please execute 'ask deploy'."
 fi
 
-echo "Adding skill id to test framework"
+echo -e "\nAdding skill id to test framework"
 SKILL_ID=$(cat ${directory}/.ask/config | grep "skill_id" | awk '{print $2}' | cut -c 2- | rev | cut -c 3- | rev)
 sed -e "s/\${SKILL_ID}/${SKILL_ID}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
 mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
@@ -259,5 +259,12 @@ echo "As skill testing is disabled by default when a skill is made through the a
 read answer
 
 if [[ $answer = 'Y' || $answer = 'y' ]] ; then
-  node $directory/other/index.js  
+  echo "Please type in your username for AWS: "
+  read username
+  
+  echo "Please type in your password: "
+  read password
+  
+  node $directory/other/index.js "$username" "$password" "$SKILL_ID"
+  echo "Setup complete, goodbye"
 fi
