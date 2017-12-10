@@ -5,6 +5,16 @@ if ! type "ask" > /dev/null; then
   exit 0
 fi
 
+if ! type "node" > /dev/null; then
+  echo "Error - 'Ask' isnt installed, please install it"
+  exit 0
+fi
+
+if ! type "tsc" > /dev/null; then
+  echo "Error - 'Ask' isnt installed, please install it"
+  exit 0
+fi
+
 echo "What is the skill name called: "
 read APP_NAME
 
