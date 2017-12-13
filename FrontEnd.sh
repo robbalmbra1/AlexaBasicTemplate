@@ -18,12 +18,6 @@ if ! type "tsc" > /dev/null; then
   exit 0
 fi
 
-#make sure typescript is installed
-if ! type "jq" > /dev/null; then
-  echo "Error - 'jq' isnt installed, please install it"
-  exit 0
-fi
-
 echo "What is the skill name called: "
 read APP_NAME
 
