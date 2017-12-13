@@ -35,6 +35,9 @@ mv $directory/skill.json.tmp $directory/skill.json
 sed -e "s/\${directory}/${$APP_NAME}/" $directory/skill.json > $directory/skill.json.tmp
 mv $directory/skill.json.tmp $directory/skill.json
 
+sed -e "s/$directory/$APP_NAME/g" $directory/skill.json > $directory/skill.json.tmp
+mv $directory/skill.json.tmp $directory/skill.json
+
 echo "What is the invocation name: "
 read invocationName
 
