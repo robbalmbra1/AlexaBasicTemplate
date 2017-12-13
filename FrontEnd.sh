@@ -8,13 +8,19 @@ fi
 
 #make sure node is installed
 if ! type "node" > /dev/null; then
-  echo "Error - 'Ask' isnt installed, please install it"
+  echo "Error - 'node' isnt installed, please install it"
   exit 0
 fi
 
 #make sure typescript is installed
 if ! type "tsc" > /dev/null; then
-  echo "Error - 'Ask' isnt installed, please install it"
+  echo "Error - 'tsc' isnt installed, please install it"
+  exit 0
+fi
+
+#make sure typescript is installed
+if ! type "jq" > /dev/null; then
+  echo "Error - 'jq' isnt installed, please install it"
   exit 0
 fi
 
@@ -31,6 +37,9 @@ mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 
 sed -e "s/\${NAME}/${APP_NAME}/" $directory/skill.json > $directory/skill.json.tmp
 mv $directory/skill.json.tmp $directory/skill.json
+
+echo "What is the invocation name: "
+read invocationName
 
 echo "What is your name: "
 read FULL_NAME
@@ -58,16 +67,6 @@ sed -e "s/\${KEYWORD_3}/${KEYWORD_3}/" $directory/skill.json > $directory/skill.
 mv $directory/skill.json.tmp $directory/skill.json
 
 echo -e "\n"
-
-#Loop over models and adjust name
-FILES=$directory/models/*
-for file in $FILES
-do
-  # take action on each file. $f store current file name
-  echo $file
-  sed -e "s/\${APP_NAME}/${APP_NAME}/" $file > $file.tmp
-  mv $file.tmp $file
-done
 
 #Application category
 Applicationtypes[0]="ALARMS_AND_CLOCKS"
@@ -148,9 +147,7 @@ read PHRASE_1
 echo -e "\n"
 sed -e "s/\${PHRASE_1}/${PHRASE_1}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
 mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
-
-output="Alexa ask ${APP_NAME}, ${PHRASE_1}"
-
+output="Alexa ask ${invocationName}, ${PHRASE_1}"
 sed -e "s/\${PHRASE_1}/${output}/" $directory/skill.json > $directory/skill.json.tmp
 mv $directory/skill.json.tmp $directory/skill.json
 
@@ -159,7 +156,6 @@ read PHRASE_2
 echo -e "\n"
 sed -e "s/\${PHRASE_2}/${PHRASE_2}/" $directory/skill.json > $directory/skill.json.tmp
 mv $directory/skill.json.tmp $directory/skill.json
-
 sed -e "s/\${PHRASE_2}/${PHRASE_2}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
 mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 
@@ -168,7 +164,6 @@ read PHRASE_3
 echo -e "\n"
 sed -e "s/\${PHRASE_3}/${PHRASE_3}/" $directory/skill.json > $directory/skill.json.tmp
 mv $directory/skill.json.tmp $directory/skill.json
-
 sed -e "s/\${PHRASE_3}/${PHRASE_3}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
 mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 
@@ -186,67 +181,217 @@ echo -e "\n"
 sed -e "s/\${FULL_DESC}/${FULL_DESC}/" $directory/skill.json > $directory/skill.json.tmp
 mv $directory/skill.json.tmp $directory/skill.json
 
-echo "Do you want to use your phrases as samples for the two sample utterances(Y/N): "
-read answerphrase
+declare -a intents=()
 
-if [[ $answerphrase = 'N' || $answerphrase = 'n' ]] ; then
-  magic_variable=()
-  utterances=($(grep "\"name\":" $directory/models/en-US.json  | grep -v AMAZON | tr -d ' ' | cut -c 9- | sed 's/.$//'))
+#header
+file="model.test"
+echo -e "{\n \"interactionModel\": {\n  \"languageModel\": {\n    \"invocationName\": \"$invocationName\",\n    \"intents\": [" > $file
 
-  i=0
-  for d in "${utterances[@]}"
-  do
-    output=""
-    j=0
-    while true; do
-      if [[ $j != 0 ]]; then
-  	output+=','
-      fi
-      echo "Enter sample for $d: "
-      read sample
-      output+=\"$sample\"
 
-      echo "Do you want to add other sample (Y/N)? "
-      read answer
+#Loop over generation of intents
+i=0
+intentmaincount=0
+while true
+do
+  echo -e "\nEnter an intent name: "
+  read IntentName
 
-      if [[ $answer = 'N' || $answer = 'n' ]] ; then
-  	break
-      fi
-      ((j=j+1))
-    done
-    echo -e "\n"
-    magic_variable[$i]=$output
-    ((i=i+1))
-  done
+  echo -e "\nDo you want to add another intent (Y/N): "
+  read OtherIntent
+  intents[i]=$IntentName
 
-  #Loop over utterances and files
-  #1st item is equal to 1st set of utterances
+  if [ $OtherIntent == 'n' ] || [ $OtherIntent == 'N' ];
+  then
+	break
+  fi
+  ((i=i+1))
+  ((intentmaincount++))
+done
 
-  MODELS=$directory/models/*
-  for f in $MODELS
-  do
-    k=1
-    for i in "${magic_variable[@]}"
-      do
-        sed -e "s/\"\${SAMPLES_$k}\"/${i}/" $f  > $f.tmp
-        mv $f.tmp $f
-        ((k=k+1))
-      done
-  done
+#Write raw template
+i=0
+for intent in "${intents[@]}"
+do
+  echo "$intent"
+  if [ $i != 0 ];
+  then
+    comma=','
+  else
+    comma=''
+  fi
+  echo -e "      $comma{\n        \"name\": \"${intent}\",\n        \"slots\": [\${SLOTS_$i}],\n        \"samples\": [\${SAMPLES_$i}]\n      }" >> $file
+  ((i=i+1))
+done
+
+cat << EOF >> $file
+      ,{
+         "name": "AMAZON.HelpIntent"
+      }
+      ,{
+         "name": "AMAZON.StopIntent"
+      }
+      ,{
+         "name": "AMAZON.CancelIntent"
+      }
+      ,{
+         "name": "AboutIntent",
+         "slots":[],
+         "samples":["Who wrote this Skill","Who is the developer of this skill","Who developed this skill","Who designed this skill"]
+      }
+EOF
+
+#Loop over intents and ask for some samples
+i=0
+slotcount=0
+runOnce=0
+runoncet=0
+for intent in "${intents[@]}"
+do
+       sampleslist=""
+       declare -a slotnames=()
+       while true
+       do
+         echo -e "\nPlease type a sample for $intent: "
+         read Sample
+
+         sampleslist+="\"$Sample\""
+
+         echo -e "\nDo you want add any other samples (Y/N): "
+         read Answer
+
+         if [ $Answer == 'n' ] || [ $Answer == 'N' ];
+         then
+            #write to file
+            sed -e "s/\${SAMPLES_$i}/$sampleslist/" $file > $file.tmp
+            mv $file.tmp $file
+
+            echo -e "\nDoes this intent need any slots (Y/N): "
+            read SlotAnswer
+
+
+            o=0
+            if [ $SlotAnswer == 'n' ] || [ $SlotAnswer == 'N' ];
+            then
+              nothing=""
+              sed -e "s/\${SLOTS_$i}/$nothing/" $file > $file.tmp
+              mv $file.tmp $file
+              break
+            fi
+
+            slotstring=""
+            comma=""
+            while true
+            do
+              echo "Please type the slot name: "
+              read SlotName
+
+              echo "Please type the custom or AMAZON slot type: "
+              read SlotType
+
+              #append into string
+              if [ $o != 0 ]; then
+                comma=","
+              else
+                comma=""
+              fi
+
+read -r -d '' slotstringtmpg << EOM
+  $comma{
+    "name": "$SlotName",
+    "type": "$SlotType"
+  }
+EOM
+              slotstringtmp=`echo -e ${slotstringtmpg} | tr '\n' "\r"`
+              slotstring+=$slotstringtmp
+
+              if [[ $SlotType == *"AMAZON"* ]]; then
+                echo "AMAZON slot type inserted into model"
+              else
+                echo "Please type your custom types, seperated by a comma: "
+                read CustomType
+                if [ $runOnce == 0 ]; then
+                  echo -e "      ],\n      \"types\":[" >> $file
+                  runOnce=1
+                fi
+
+                if [ $o != 0 ]; then
+                  echo -e "        ,{\n         \"name\": \"$SlotType\",\n          \"values\": [" >> $file
+                else
+                  if [ $runoncet == 1 ]; then
+                    echo -e "        ,{\n         \"name\": \"$SlotType\",\n          \"values\": [" >> $file
+                  else
+                    echo -e "        {\n          \"name\": \"$SlotType\",\n          \"values\": [" >> $file
+                    runoncet=1
+                  fi
+                fi
+
+                l=0
+                comma=''
+                wordsfull=$(echo $CustomType | tr "," "\n")
+                wordscount=0
+                for word in $wordsfull
+                do
+                  ((wordscount++))
+                done
+                ((wordscount--))
+
+                for word in $wordsfull
+                do
+                  if [ $l != 0 ]; then
+                    comma='          ,'
+                  else
+                    comma='          '
+                  fi
+                  if [ $l == $wordscount ]; then
+                    echo -e "$comma{\n            \"name\": {\n              \"value\": \"$word\"\n            }\n          }\n          ]\n     }" >> $file
+                  else
+                    echo -e "$comma{\n            \"name\": {\n              \"value\": \"$word\"\n            }\n          }" >> $file
+                  fi
+                  ((l=l+1))
+                done
+              fi
+
+              (( slotcount+=1 ))
+              echo "Do you want to insert anymore slots (Y/N): "
+              read Answer
+              ((o++))
+              if [ $Answer == 'n' ] || [ $Answer == 'N' ];
+              then
+                o=0
+                echo $slotstring
+                sed -e "s/\${SLOTS_$i}/$slotstring/" $file > $file.tmp
+                mv $file.tmp $file
+                break
+              fi
+            done
+
+            #finish intent
+            break
+          else
+            sampleslist+=","
+          fi
+       done
+       ((i=i+1))
+done
+
+if [ $o != 0 ]; then
+  echo -e "         ]\n       }\n    }\n    }\n" >> $file
 else
-  #loop over files and apply phrases
-  MODELS=$directory/models/*
-  for f in $MODELS
-  do
-    i=\"$PHRASE_1\",\"$PHRASE_2\"
-    sed -e "s/\"\${SAMPLES_1}\"/${i}/" $f  > $f.tmp
-    mv $f.tmp $f
-
-    i=\"$PHRASE_3\"
-    sed -e "s/\"\${SAMPLES_2}\"/${i}/" $f  > $f.tmp
-    mv $f.tmp $f
-  done
+  echo -e "\n      ] \n    } \n   } \n }" >> $file
 fi
+#Loop over slots
+
+
+echo "\nCopying temporary model over to models folder"
+#cat model.test | jq > model.test.tmp
+#mv model.test.tmp model.test
+
+#copy model.test over each model
+FILES=$directory/models/*
+for f in $FILES
+do
+  cp model.test $f
+done
 
 echo "Generating index.js using tsc"
 cd $directory/lambda/custom/
@@ -257,8 +402,17 @@ cd ../../../
 echo -e "\nDeploying initial alexa skill, please wait"
 cd $directory
 ask deploy
-echo -e "Warning - Please update the logos of the skill through the alexa skill interface, To deploy in the future please execute 'ask deploy'.\n"
 
+#return opcode
+if [[ $? -eq 0 ]]; then
+  echo "Successfully deployed skill."
+else
+  echo "Error - An error occured, see error above."
+  exit 1
+fi
+
+cd ..
+echo -e "Warning - Please update the logos of the skill through the alexa skill interface, To deploy in the future please execute 'ask deploy'.\n"
 echo -e "\nAdding skill id to test framework"
 SKILL_ID=$(cat ${directory}/.ask/config | grep "skill_id" | awk '{print $2}' | cut -c 2- | rev | cut -c 3- | rev)
 sed -e "s/\${SKILL_ID}/${SKILL_ID}/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
@@ -273,10 +427,10 @@ read answer
 if [[ $answer = 'Y' || $answer = 'y' ]] ; then
   echo "Please type in your username for AWS: "
   read username
-  
+
   echo "Please type in your password: "
   read password
-  
+
   node $directory/other/index.js "$username" "$password" "$SKILL_ID"
   echo "Setup complete, goodbye"
 else
