@@ -32,8 +32,8 @@ mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 sed -e "s/\${NAME}/${APP_NAME}/" $directory/skill.json > $directory/skill.json.tmp
 mv $directory/skill.json.tmp $directory/skill.json
 
-sed -e "s/\${directory}/${$APP_NAME}/" $directory/skill.json > $directory/skill.json.tmp
-mv $directory/skill.json.tmp $directory/skill.json
+#sed -e "s/\${directory}/${$APP_NAME}/" $directory/skill.json > $directory/skill.json.tmp
+#mv $directory/skill.json.tmp $directory/skill.json
 
 sed -e "s/$directory/$APP_NAME/g" $directory/skill.json > $directory/skill.json.tmp
 mv $directory/skill.json.tmp $directory/skill.json
