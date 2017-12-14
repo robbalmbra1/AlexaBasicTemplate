@@ -220,8 +220,31 @@ do
     comma=''
   fi
   echo -e "      $comma{\n        \"name\": \"${intent}\",\n        \"slots\": [\${SLOTS_$i}],\n        \"samples\": [\${SAMPLES_$i}]\n      }" >> $file
+cat <<- EOF >> $directory/lambda/custom/index.ts
+        ,
+        '$intent': function () {
+                let self: Alexa.Handler = this;
+                var speechOutput = "";
+                self.emit(":tellWithCard", speechOutput, this.t('APP_NAME'), speechOutput);
+        }
+EOF
+
   ((i=i+1))
 done
+
+cat <<- EOF >> $directory/lambda/custom/index.ts
+}
+
+export class Handler {
+	constructor(event: Alexa.RequestBody, context: Alexa.context, callback: Function) {
+		let alexa = Alexa.handler(event, context);
+		alexa.appId = "${SKILL_ID}";
+                alexa.resources = languageStrings;
+		alexa.registerHandlers(handlers);
+		alexa.execute();
+	}
+}
+EOF
 
 cat << EOF >> $file
       ,{
