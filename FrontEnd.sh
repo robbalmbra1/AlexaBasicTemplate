@@ -444,6 +444,10 @@ mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 sed -e "s/\${SKILL_ID}/${SKILL_ID}/" $directory/lambda/custom/test/index.js  > $directory/lambda/custom/test/index.js.tmp
 mv $directory/lambda/custom/test/index.js.tmp $directory/lambda/custom/test/index.js
 
+cd $directory
+ask deploy
+cd ..
+
 echo -e "\nAs skill testing is disabled by default when a skill is made through the ask CLI, do you want me to turn testing on for the testing framework(Y/N): "
 read answer
 
