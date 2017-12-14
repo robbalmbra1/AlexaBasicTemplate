@@ -53,13 +53,3 @@ let handlers: Alexa.Handlers = {
 		var repromptText = this.t('ASK_MESSAGE');
 		this.emit(':ask', speechOutput, repromptText);
 	}
-	'WelcomeIntent': function () {
-		let self: Alexa.Handler = this;
-		var speechOutput = "";
-		self.emit(":tellWithCard", speechOutput, this.t('APP_NAME'), speechOutput);
-	},
-	'OtherIntent': function () {
-		let self: Alexa.Handler = this;
-		var speechOutput = "";
-		self.emit(":tellWithCard", speechOutput, this.t('APP_NAME'), speechOutput)
-	}
