@@ -52,7 +52,7 @@ let handlers: Alexa.Handlers = {
 		var speechOutput = this.t('LAUNCH_MESSAGE');
 		var repromptText = this.t('ASK_MESSAGE');
 		this.emit(':ask', speechOutput, repromptText);
-	},
+	}
 	'WelcomeIntent': function () {
 		let self: Alexa.Handler = this;
 		var speechOutput = "";
@@ -63,14 +63,3 @@ let handlers: Alexa.Handlers = {
 		var speechOutput = "";
 		self.emit(":tellWithCard", speechOutput, this.t('APP_NAME'), speechOutput)
 	}
-}
-
-export class handler {
-	constructor(event: Alexa.RequestBody, context: Alexa.context, callback: Function) {
-		let alexa = Alexa.handler(event, context);
-		alexa.appId = "${SKILL_ID}";
-		alexa.resources = languageStrings;
-		alexa.registerHandlers(handlers);
-		alexa.execute();
-	}
-}
