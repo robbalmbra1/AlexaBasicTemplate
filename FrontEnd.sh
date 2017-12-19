@@ -235,7 +235,7 @@ done
 cat <<- EOF >> $directory/lambda/custom/index.ts
 }
 
-export class Handler {
+export class handler {
 	constructor(event: Alexa.RequestBody, context: Alexa.context, callback: Function) {
 		let alexa = Alexa.handler(event, context);
 		alexa.appId = "${SKILL_ID}";
