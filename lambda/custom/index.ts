@@ -41,6 +41,10 @@ let handlers: Alexa.Handlers = {
 		let speechOutput = this.t('GOODBYE');
 		self.emit(":tell", speechOutput, this.t('APP_NAME'), speechOutput);
 	},
+  'Unhandled': function () {
+    let self: Alexa.Handler = this;
+    this.emit("AMAZON.HelpIntent");
+  },
 	'AMAZON.HelpIntent': function () {
 		let self: Alexa.Handler = this;
 		let speechOutput = this.t('COMMAND_MESSAGE');

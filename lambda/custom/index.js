@@ -41,6 +41,10 @@ var handlers = {
         var speechOutput = this.t('GOODBYE');
         self.emit(":tell", speechOutput, this.t('APP_NAME'), speechOutput);
     },
+    'Unhandled': function () {
+        var self = this;
+        self.emit("AMAZON.HelpIntent");
+    },
     'AMAZON.HelpIntent': function () {
         var self = this;
         var speechOutput = this.t('COMMAND_MESSAGE');
