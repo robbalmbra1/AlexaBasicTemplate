@@ -13,6 +13,8 @@ Enter your root secret and access keys from your AWS root account or a AWS IAM a
 
 More information about ask cli can be found [here](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html) and awscli can be found [here](https://aws.amazon.com/cli/)
 
+tsc is also a required package, install it by running `npm install tsc -g`.
+
 Then Download and run FrontEnd.sh, once run answer the questions, this will generate the needed files to deploy the skill.
 
 ### Download
