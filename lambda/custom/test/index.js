@@ -25,7 +25,7 @@ describe("Testing the Intent", function() {
     "type": "IntentRequest",
     "requestId": "EdwRequestId.6W544534504D-XFGS45ZDFGDFG-EFJ56DG54G-DRGDR",
     "intent": {
-      "name": "WelcomeIntent",
+      "name": "${INTENT_NAME}",
       "slots": {}
     },
     "locale": "en-US",

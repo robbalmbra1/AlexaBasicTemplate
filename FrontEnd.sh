@@ -408,7 +408,15 @@ if [ $o != 0 ]; then
 else
   echo -e "\n      ] \n    } \n   } \n }" >> $file
 fi
-#Loop over slots
+
+for intent in "${intents[@]}"
+do
+    testintent = $intent
+    break
+done
+
+sed -e "s/\${INTENT_NAME}/$testintent/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
+mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
 
 
 echo "\nCopying temporary model over to models folder"
