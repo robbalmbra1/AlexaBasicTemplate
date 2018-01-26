@@ -1,5 +1,6 @@
 # AlexaBasicTemplate
 
+### Prerequisites
 Basic template and interactive frontend for ask CLI.
 
 Run `ask init` to login to your amazon account via your browser, if you havent got ask, install it `npm install -g ask-cli`.
