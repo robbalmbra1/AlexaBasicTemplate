@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Alexa Skill Generator v1.0 - Robert Balmbra"
+echo -e "Warning - Please read the README file for usage information and specific requirements.\n"
 
 #make sure ask is installed
 if ! type "ask" > /dev/null; then
@@ -9,7 +11,7 @@ fi
 #check if ~/.ask/cli_config
 if [ ! -f ~/.ask/cli_config ]; then
     echo "Error - Alexa config doesnt exist, please run ask init"
-    exit 2 
+    exit 2
 fi
 
 #make sure node is installed
@@ -28,6 +30,13 @@ echo "What is the skill name called: "
 read APP_NAME
 
 directory=$(echo $APP_NAME | tr "[:upper:]" "[:lower:]" | sed 's/ /-/g') #pc made directory from APP_NAME
+
+#check if directory exists before processing
+if [ -d "$directory" ]; then
+  echo "Error - The app name '$directory' exists, please use another name or use a different folder."
+  exit 5
+fi
+
 #get basic template
 ask new --skill-name "${APP_NAME}" --template Basic --url https://sandr-photography.com/alexa/templates.json &> /dev/null
 
@@ -197,6 +206,7 @@ echo -e "{\n \"interactionModel\": {\n  \"languageModel\": {\n    \"invocationNa
 #Loop over generation of intents
 i=0
 intentmaincount=0
+echo "Warning - Please only use periods and characters, numbers are not supported within Intent Names."
 while true
 do
   echo -e "\nEnter an intent name: "
@@ -409,19 +419,32 @@ else
   echo -e "\n      ] \n    } \n   } \n }" >> $file
 fi
 
+echo "Type the number of the intent that should be initially placed into the mocha test framework, this can be changed altered in the future: "
+u=1
 for intent in "${intents[@]}"
 do
-    testintent = $intent
-    break
+	echo "$u. $intent"
+	((u=u+1))
 done
 
-sed -e "s/\${INTENT_NAME}/$testintent/" $directory/lambda/custom/index.ts  > $directory/lambda/custom/index.ts.tmp
-mv $directory/lambda/custom/index.ts.tmp $directory/lambda/custom/index.ts
+max=$((u-1))
+while true
+do
+	read UserInputIntent
+	if [ "$UserInputIntent" -ge 1 ] && [ "$UserInputIntent" -le $max ]
+  then
+		id=$((UserInputIntent-1))
+    break
+	else
+    echo "Invalid choice, please try again:"
+  fi
+done
 
+echo "Added intent '${intents[$id]}' to the mocha framework"
+sed -e "s/\${INTENT_NAME}/${intents[$id]}/" $directory/lambda/custom/test/index.js  > $directory/lambda/custom/test/index.js.tmp
+mv $directory/lambda/custom/test/index.js.tmp $directory/lambda/custom/test/index.js
 
-echo "\nCopying temporary model over to models folder"
-#cat model.test | jq > model.test.tmp
-#mv model.test.tmp model.test
+echo -e "\nCopying temporary model over to models folder"
 
 #copy model.test over each model
 FILES=$directory/models/*
