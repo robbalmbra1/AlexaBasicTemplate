@@ -3,25 +3,25 @@
 #make sure ask is installed
 if ! type "ask" > /dev/null; then
   echo "Error - 'Ask' isnt installed, please install it"
-  exit 0
+  exit 1
 fi
 
 #check if ~/.ask/cli_config
 if [ ! -f ~/.ask/cli_config ]; then
     echo "Error - Alexa config doesnt exist, please run ask init"
-    exit 0
+    exit 2 
 fi
 
 #make sure node is installed
 if ! type "node" > /dev/null; then
   echo "Error - 'node' isnt installed, please install it"
-  exit 0
+  exit 3
 fi
 
 #make sure typescript is installed
 if ! type "tsc" > /dev/null; then
   echo "Error - 'tsc' isnt installed, please install it"
-  exit 0
+  exit 4
 fi
 
 echo "What is the skill name called: "
