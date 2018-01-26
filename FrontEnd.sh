@@ -6,6 +6,12 @@ if ! type "ask" > /dev/null; then
   exit 0
 fi
 
+#check if ~/.ask/cli_config
+if [ ! -f ~/.ask/cli_config ]; then
+    echo "Error - Alexa config doesnt exist, please run ask init"
+    exit 0
+fi
+
 #make sure node is installed
 if ! type "node" > /dev/null; then
   echo "Error - 'node' isnt installed, please install it"
